@@ -9,9 +9,10 @@ This page summarizes the controls. Implementation details are private.
 | Claiming someone else's account | One-time **setup codes** issued by the manager: stored as a keyed hash, single use, expire in 7 days. Knowing a name is not enough. |
 | Guessing a PIN | **Escalating lockout** per account and per IP, persisted so a restart doesn't reset it. Six-digit PINs that reject runs and repeats, **scrypt**-hashed. |
 | Stolen or stale sessions | HMAC-signed cookies carrying a **credential version**, checked on every request. A PIN reset, a PIN change or "sign out everywhere" ends every older session immediately. |
-| The manager account | **scrypt** password plus **TOTP** authenticator codes (RFC 6238, replay-protected). Rotating either secret ends existing sessions. |
+| The manager account | **scrypt** password plus **TOTP** authenticator codes (RFC 6238, replay-protected). Rotating either secret, or signing out every manager session, ends existing sessions. |
 | The kitchen kiosk | **Paired** with a short-lived code, then an httpOnly cookie whose secret is stored hashed. Every device is listed and revocable. No token ever appears in a URL. |
 | The dining-room TV | A separate **read-only key** for two endpoints that return names and counts only, never dietary information. |
+| Who wrote what | Meal comments, requests and replies carry no name on the kitchen tablet or on other residents' phones. Only the manager sees authors. Revealing one message's author, or hiding a message, is logged and can be undone. |
 | Allergy data | Sent only to the chefs' paired kiosk and the manager. Never shown on the TV, in public feeds or to other residents. |
 | Network exposure | The app binds to localhost on the server. The only way in is an **outbound-only Cloudflare Tunnel**, with TLS and HSTS at the edge. Admin access is over a private Tailscale network. |
 | Everything else | Content Security Policy, `frame-ancestors 'none'`, nosniff, strict referrer policy, no CORS, signed calendar-feed URLs, formula-safe CSV export, and systemd sandboxing. |

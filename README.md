@@ -1,140 +1,127 @@
 # Kitchen Portal
 
-**Dining operations software for group-living houses: duty scheduling, late plates, menus, meal feedback and house polls, in one app for residents, chefs and the house's kitchen manager.**
+**Dining operations software for group-living houses.** Duty scheduling, cover, late plates, menus, meal feedback and house polls, in one system with a screen for each person who needs it: residents on their phones, chefs on a kitchen tablet, and the house's kitchen manager at a desk.
 
 In daily use since August 2026 by a fraternity chapter house of about 95 residents. It replaced a group-chat screenshot of the duty rotation, a sign-up sheet on the chefs' cart, and "I never knew I was on" arguments.
 
 > This repository is a product overview: documentation and screenshots only. **The source code is private and proprietary.** I'm happy to give a live demo, or code access to reviewers on request: rsghorbani9@gmail.com
 >
-> Screenshots use a demo roster with fictional names. No real residents appear.
+> Every screenshot comes from a demo house with fictional names and a few weeks of made-up activity. No real residents appear.
 
 <p align="center">
-  <img src="docs/screenshots/phone-home.png" width="30%" alt="A resident's home screen: his next shift and who he is on with">
-  <img src="docs/screenshots/phone-board.png" width="30%" alt="The week's board, with a shift up for grabs that anyone can pick up">
-  <img src="docs/screenshots/phone-request-plate.png" width="30%" alt="Requesting a late plate, with his allergy attached automatically">
+  <img src="docs/screenshots/phone-home.png" width="30%" alt="A resident's Home tab: tomorrow's lunch cleanup and who he is on with, buttons to put it up for grabs, drop it or add it to a calendar, and his points and standing">
+  <img src="docs/screenshots/phone-board.png" width="30%" alt="The Board: two open shifts worth a point, then each day's lunch and dinner crew, with his own shift highlighted and a cover request on Thursday dinner">
+  <img src="docs/screenshots/phone-late-plate.png" width="30%" alt="Saving a dinner plate: the menu, his peanut allergy flagged for the kitchen automatically, and a note saying he is back around 7:30">
 </p>
 
 ---
 
-## The problem
+## One record, three screens
 
-A chapter house with a hired chef has three groups who all need the same information, and nothing that connects them:
+A house with a hired chef has three groups who all need the same information and nothing that connects them. Kitchen Portal gives each one an interface built for the device it's actually used on, all backed by a single record.
 
-- **Residents** need to know when they're on kitchen duty, trade shifts when life gets in the way, see the menu, and save a plate when class runs over the meal.
-- **Chefs** need an accurate, allergy-safe list of plates to save, a simple way to publish the menu, and honest feedback on their food.
-- **The kitchen manager**, a student volunteer who changes every year, has to run a fair duty rotation for dozens of people and settle disputes about who was on.
+| Who | Where | What they do there |
+|---|---|---|
+| **Residents** | A phone app with three tabs | See their next shift, trade it, pick up open ones, vote on meals, talk to the kitchen, save a plate, answer polls |
+| **Chefs** | A paired kitchen tablet | Work the late-plate queue, publish the menu, answer the house, decide what to cook next |
+| **Kitchen manager** | A desktop console | Draw and post weeks, run the roster and points, read feedback with names, run polls, check the audit log |
 
-Kitchen Portal gives each group its own interface, built for the device it's actually used on, and backs them all with one record.
+The kitchen manager is a student volunteer who changes every year, so the system is built to be run by someone who has never met its author.
 
 ---
 
-## Features by interface
+## Residents: the phone app
 
-### Residents (phone app)
+Installed from the browser, no app store. Three tabs: **Home**, **Board** and **Menu**.
 
-**Home**
-- Next shift at a glance, with who you're on with, and one-tap **Add to calendar**
-- An auto-updating personal **calendar feed** of every assigned shift
-- Points, standing in the house, and upcoming shifts
-- **Standing availability:** block the days you can never do, and the draw respects them
-- Open seats going spare, which anyone can take for the point
+### Home
 
-**Shifts and cover**
-- **Put up for grabs** with a reason the house can see. The shift stays yours until someone takes it
-- Offer **2× or 3×** from points you've already earned, paid only if somebody actually covers it
-- **"I can't make it"** with clear, upfront consequences based on how much notice you give
-- **"I'll be there"** confirmation, recorded while dropping is still free
-- Coverers can hand a shift on under the same rules
-- **The Board:** the whole week's lunch and dinner crews, open shifts and one-tap pickup
+- **Your next shift**, front and centre: the day, the meal, and who you're on with
+- **Put up for grabs**, **I can't make it**, and **Add to calendar**, with the cost of each spelled out before you tap ("Dropping it now costs a make-up once somebody takes it")
+- Points, standing in the house, upcoming shifts, and how far ahead the schedule is posted
+- Open shifts anyone can take for the point, standing availability, and your history of served shifts
 
-**Menu and late plates**
-- The week's menu, day by day, viewable anywhere in seconds
-- **Save me a plate** before the cutoff, with a live countdown
-- Allergies and dietary needs attached to every request automatically
-- An optional note for the kitchen ("in class until 3:30")
-- **Recurring late plates** for a standing weekly schedule
+### Board
 
-**Feedback and the house conversation**
-- **Up/down votes on every meal**, both before it's served ("sound good?") and after ("how was it?")
-- **Meal requests:** ask for a dish and upvote others. Similar existing requests appear as you type, so duplicates don't pile up
-- Comments and conversations with the kitchen, which the chefs can reply to
-- Chef announcements, posted straight to the house
-- Feedback is **anonymous to the kitchen**. Names are visible only to the manager
+<img src="docs/screenshots/phone-standings.png" width="30%" align="right" alt="Standings: his 2 points and 34th of 58, then everyone on the rotation from most points to fewest, with lunch and dinner tabs">
 
-**Polls, standings and profile**
-- House polls in five formats, with an unskippable popup for live polls and the option to change an answer
-- **Standings:** every resident's points and rank
-- Self-managed profile: room, Slack ID and allergies
-- Six-digit PIN sign-in, PIN change, and "sign out everywhere"
-- A read-only weekly menu for out-of-house seniors, behind a shared password
+- **The board:** every posted week, day by day, with each lunch and dinner crew. Filter to your shifts, open shifts or everyone
+- **Cover:** a shift up for grabs shows on the board with what it pays. Pick it up in one tap. Ask with 2× or 3× by adding points you've already earned, paid only if someone actually covers it
+- **My availability:** block the days you can never do, like a weekly class, and the draw won't put you there
+- **Standings:** every resident from most points to fewest, by rotation, with house totals and the points the house has "minted" this year
 
-### Chefs (kitchen kiosk)
+<br clear="right">
 
-**Late plates**
-- A live queue for lunch and dinner, with counts on each tab
-- **Mandatory allergy acknowledgement:** allergies flagged in red on every plate
-- **Ready** and **Can't do it** on each request
-- A cutoff banner with a live countdown, so plating starts only when the list is final
-- A **Taking requests** switch and cutoff time adjustments, in the chefs' own hands
+### Menu
 
-**Menu**
-- A week-by-week menu editor that publishes to every resident instantly
-- Menu pairings, and scheduled meal requests shown alongside each day
+- The week's menu, day by day, with last week and next week a tap away
+- **Votes on every meal**, before it's served ("Sound good?") and after ("How was it?")
+- **A comment thread on every meal** that the kitchen reads and answers, with votes on every message
+- **Requests:** ask the kitchen for a dish and upvote what others asked for
+- **Save me a plate** before the cutoff, with a live countdown, your allergies attached automatically, and an optional note. **Recurring plates** for a standing weekly schedule
+- **No names.** The kitchen and the house see what you wrote, never who wrote it. Only the manager can see names
 
-**Feedback**
-- **Meal ratings:** before- and after-serving scores for recent meals, with no names attached
-- **Messages:** read the house's comments and reply, signed as the chef who answered
-- **Requests:** triage what the house is asking for. Schedule it, mark it already made, save it for later, pass, merge duplicates, or dismiss it
-- **Our ideas:** the kitchen's own idea bank, with when each dish was last made and when it's planned next. Schedule meals ahead with an assistive planner
-- **Post to the house:** announcements written and published by the chefs themselves
+### Polls
 
-**Device**
-- Securely **paired** tablet or kitchen laptop, with no passwords on the kitchen counter and pairing status on screen
+A poll the manager puts live **pops up on any page until you answer it**. You can change your answer while it's open, and the results can be shown back to the house. Five formats: pick one, pick several, rank, rating scale, and written answer.
 
-### Kitchen manager (desktop)
+<p align="center">
+  <img src="docs/screenshots/phone-votes.png" width="30%" alt="Tuesday's meals after serving: lunch at +13 with one comment, dinner at +17 with two">
+  <img src="docs/screenshots/phone-thread.png" width="30%" alt="The thread on Saturday's taco night: a request for spicier salsa at +12, the kitchen's reply the next morning, and a follow-up, all without names">
+  <img src="docs/screenshots/phone-poll.png" width="30%" alt="A live poll as a popup: pick up to two additions to Sunday brunch, closing Sunday at 5 PM">
+</p>
 
-**Dashboard**
-- Live tiles: residents on duty, sign-up rate, point spread, shifts up for grabs, make-ups owed, exemptions
-- How far ahead the schedule is posted, current and upcoming weeks, and an archive
-- One-click **chapter announcement** text
-- Recent activity feed, and a running count of points the house has "minted"
+---
 
-**Weeks**
-- **Draw** a week with a fair, reproducible scheduler: make-up debt first, then fewest points, then longest since served, then a seeded random draw
-- A configurable limit on weeks in a row, so a resident who is far behind catches up at a sustainable pace
-- A per-week overview with a **"Needs you"** list
-- Attendance and no-shows, raising offers on open seats, and bounties
+## Chefs: the kitchen tablet
 
-**Roster**
-- An **import wizard** that takes the chapter export, a spreadsheet, pasted cells or a typed list, and shows every add, update and removal for approval first
-- Bulk actions: rotations, exemptions with reasons, setup codes, removals
-- **Points operations:** add, subtract, set or rebase for a selection or a whole crew, with a preview and a reason on every record
-- One-time **setup codes** for claiming accounts
-- A **record for each resident:** every shift, late drops, releases, waivers and the full audit trail
-- **View as resident** to see exactly what the house sees
+![The kitchen tablet's dinner queue: a countdown to the 4 PM cutoff, the Taking requests switch, and three plates to make, two with allergies flagged in red and one with a note](docs/screenshots/kitchen-tablet.png)
 
-**Late plates and the kiosk**
-- Pair, rename and revoke kitchen devices
-- Default cutoffs and meal settings
+**Late Plates.** A live queue for each meal, with counts on each tab. Allergies are flagged in red on every plate. A cutoff banner counts down so plating starts only when the list is final. Each plate gets **Ready** or **Can't do it**, and the chefs control the **Taking requests** switch and cutoff times themselves.
 
-**Feedback**
-- Meal scores with authors, starred requests, hiding comments, and a **weekly digest**
+**Menu.** A week-by-week editor. What the chefs type shows up on every phone and on the dining-room TV right away.
 
-**Polls**
-- Five formats: pick one, pick several, rank, rating scale and written answer
-- Audiences (everyone, on duty, one crew, residents living in), closing times, and anonymous mode
-- Results with names, a list of who hasn't answered, copy-to-Slack, and CSV export
+**Feedback.** Everything the house is saying, in one place, with no names:
 
-**Audit log**
-- An append-only log of every consequential action
-- Filter by category, exact action, actor type, resident, record and date range, or search free text
-- Every view is a shareable URL, with CSV export
+- **Requests:** what the house is asking for, ranked by votes. **Schedule it** for a day and meal, **save for later**, mark it **already made**, **pass**, or remove a duplicate. Private kitchen notes sit next to public replies, and a request nobody acts on passes by itself
+- **Messages:** meal comments waiting on a reply, answered by the kitchen while the resident who wrote it stays anonymous
+- **Meal ratings**, **our ideas** (the kitchen's own idea bank), and **post to the house** for announcements
 
-**Settings and operations**
-- School-year rollover that carries the roster, points and settings forward
-- Draw pace, roster defaults, and the menu password for out-of-house seniors
-- **Slack integration:** reminders, cover posts and nudges, a switch for each message, built-in limits that keep the channel quiet, and a bot that deletes its own posts once they're resolved
-- An **in-app handbook**, so next year's manager can run it without the person who built it
+| Requests, ranked by the house | Messages waiting on the kitchen |
+|---|---|
+| ![The Requests list: chicken parm night at 15 votes, breakfast for dinner at 10, and the chef's options to schedule, save, mark made, pass or remove](docs/screenshots/kitchen-requests.png) | ![Messages: meal comments waiting on a reply, each showing how the writer voted, with a reply box and "Mark done without replying"](docs/screenshots/kitchen-feedback.png) |
+
+The tablet is **paired** with a short-lived code from the manager. There are no passwords on the kitchen counter, and each tablet can be revoked.
+
+---
+
+## Kitchen manager: the desktop console
+
+![The manager's dashboard: residents on duty, 92% signed in, point spread, shifts up for grabs, make-ups owed and exemptions; a live poll at 42 of 61 answers; house points and the year's minted count; and the posted weeks](docs/screenshots/admin-dashboard.png)
+
+**Dashboard.** Live tiles for the house, live polls with their response progress, points by rotation, how far ahead the schedule is posted, and a one-click chapter announcement.
+
+**Weeks.** Draw a week with a fair, reproducible scheduler, then post it. Each week has a **Needs you** list, and any shift can be reassigned, marked a no-show or posted for cover from the grid. A week that has started can't be deleted, because what the house was told is the record.
+
+**Roster and records.** An import wizard that takes the chapter's export, a spreadsheet, pasted cells or a typed list, and shows every add, update and removal for approval first. Bulk rotations, exemptions, setup codes and points operations, each with a reason on every affected record. And **a record for every resident:** every shift with the notice they were given, and everything that ever happened to them.
+
+| A posted week, and what needs attention | One resident's record |
+|---|---|
+| ![Manage week: one cover request needing attention, then the week's lunch and dinner crews, with today highlighted](docs/screenshots/admin-week.png) | ![A resident's record: three shifts with the notice given for each, one served as cover and one no-show, and the record that explains them](docs/screenshots/admin-member-history.png) |
+
+**Feedback, with names.** The week at a glance, conversations waiting on the kitchen, meal scores, requests and polls. Only the manager sees who wrote what. **Reveal name** shows one message's author to the house, and **Hide** takes a message off every screen. Both are logged and can be undone.
+
+**Polls.** Five formats, a chosen audience, closing times and an anonymous mode. Live results with names, who still hasn't answered, a timing breakdown, and CSV export.
+
+| This week's feedback | A live poll's results |
+|---|---|
+| ![The manager's feedback page: the kitchen's open conversations, new requests with who asked, the most wanted dishes not yet planned, and every comment with its author](docs/screenshots/admin-feedback.png) | ![Poll results: 42 of 61 answered, a 69% response rate, typical time to answer, and each option with who picked it](docs/screenshots/admin-poll.png) |
+
+**Audit log.** Every consequential action, append-only: sign-ins, shifts, cover, points, plates, feedback and manager changes. Filter by category, action, who acted, resident, record and date range, or search free text. Every view is a link and exports to CSV.
+
+![The audit log filtered to shifts and cover: who put a shift up for grabs and why, who picked it up, who owes a make-up, and a same-day request the manager raised to 2×](docs/screenshots/admin-audit.png)
+
+**Settings and the handbook.** School-year rollover that carries the roster, points and settings forward. Draw pace, roster defaults, Slack reminders and nudges with a switch for each message, and an **in-app handbook** so next year's manager can run it alone.
 
 ### Dining-room TV
 
@@ -142,34 +129,27 @@ A companion display on the same hardware shows today's menu, kitchen duty, weath
 
 ---
 
-## More screens
+## The house rules, encoded
 
-| The chefs' lunch queue on the kitchen kiosk | A resident's record: every shift, with notice given |
-|---|---|
-| ![Kitchen kiosk](docs/screenshots/kitchen-tablet.png) | ![Resident record](docs/screenshots/member-record.png) |
-
-**The chefs' Feedback tab and a live house poll.** Requests come in ranked by votes, with no names attached, and the chefs schedule, save, pass or answer each one. A live poll stays in front of every resident until he answers.
-
-<p align="center">
-  <img src="docs/screenshots/kitchen-feedback.png" width="70%" alt="The kitchen kiosk's Feedback tab: anonymous meal requests ranked by votes, with the chefs' options to schedule, save for later, pass or reply">
-  <img src="docs/screenshots/phone-poll.png" width="22%" alt="A live poll on a resident's phone: pick up to two additions to Sunday brunch">
-</p>
-
-![The manager's dashboard](docs/screenshots/dashboard.png)
-
-![Cover requests in the audit log: asked, picked up, and a same-day ask the manager raised to 2x](docs/screenshots/audit-cover.png)
+- **Who gets drawn.** Make-up debt first, then fewest points, then longest since last served, then a random draw seeded by the week, so any week can be reproduced exactly. Standing conflicts and exemptions are respected, with one shift per resident per week except make-ups.
+- **Up for grabs isn't dropping out.** A shift up for grabs stays yours until somebody takes it, and only whoever serves earns the point. A bonus you offer comes out of points you've earned, is paid only if someone covers, and can never be promised twice. Cover moves points between residents. It never creates them.
+- **"I can't make it" depends on notice.** With 72 hours' notice you come off the shift and owe a make-up. With less, it stays yours and the manager is flagged.
+- **No-shows** never earn the point and, by default, owe a make-up and lose a point.
+- **Minted points are counted.** Anything the house adds, such as a raised shift or a bounty on an open seat, is recorded apart from what residents funded, and the year's total is public.
+- **Points can't drift.** Randomized tests replay posts, raises, pickups and corrections, and check that every point in the house is accounted for.
+- **Feedback is open but nameless,** and **polls can't be skipped.**
+- **Posted weeks are never regenerated.** What the house was told is the record.
 
 ---
 
 ## Built for real use
 
-- **A full-stack progressive web app** that residents install from the browser, with no app store needed
-- **Self-hosted** on a Raspberry Pi in the house. Published through an outbound-only Cloudflare Tunnel, so nothing listens on the house network
-- **Security designed for an attacker who knows the house:** one-time setup codes, scrypt-hashed PINs with escalating lockout, signed sessions that can be revoked instantly, a manager account with password plus authenticator (TOTP), paired kitchen devices, and strict browser security headers. Residents in the house who study security have tried to break in and haven't managed it.
-- **The record is the product:** every consequential change appends to an audit log that's never edited or deleted, which settles "I never knew I was on" with a timestamped chain instead of memory
-- **Points can't drift:** the scheduler and points logic are pure, heavily tested functions. Randomized tests check that every point in the house is accounted for
+- **A full-stack progressive web app** that residents install from the browser
+- **Self-hosted** on a Raspberry Pi in the house, published through an outbound-only Cloudflare Tunnel, so nothing listens on the house network
+- **Security designed for an attacker who knows the house:** one-time setup codes, scrypt-hashed PINs with escalating lockout, signed sessions that can be revoked instantly, a manager account with a password and an authenticator code (TOTP), paired kitchen devices, and strict browser security headers. Residents who study security have tried to break in and haven't managed it.
+- **The record is the product:** every consequential change appends to an audit log that is never edited or deleted, so "I never knew I was on" is answered with a timestamped chain instead of memory
 - **Nightly encrypted backups** (AES-256-GCM) to a USB drive, with integrity checks and a scripted restore drill
-- **Safe deploys:** typecheck, 400+ tests, backup, build, health check, and automatic rollback if unhealthy
+- **Safe deploys:** typecheck, nearly 400 tests, backup, build, health check, and automatic rollback if unhealthy
 
 See [SECURITY-OVERVIEW.md](SECURITY-OVERVIEW.md) for more on the security design.
 
@@ -177,7 +157,7 @@ See [SECURITY-OVERVIEW.md](SECURITY-OVERVIEW.md) for more on the security design
 
 ## Where it's going
 
-Any house or organization that feeds its members on a schedule (fraternities and sororities, co-ops, cooperative and religious houses, camps) has the same three-sided problem. The next step is to take Kitchen Portal from one house to many: multi-house hosting, onboarding without the builder present, and conversations with the food-service companies that staff these kitchens.
+Any house or organization that feeds its members on a schedule (fraternities and sororities, co-ops, religious houses, camps) has the same three-sided problem. The next step is to take Kitchen Portal from one house to many: multi-house hosting, onboarding without the builder present, and conversations with the food-service companies that staff these kitchens.
 
 ---
 
