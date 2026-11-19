@@ -148,6 +148,13 @@ A companion display on the same hardware shows today's menu, kitchen duty, weath
 |---|---|
 | ![Kitchen kiosk](docs/screenshots/kitchen-tablet.png) | ![Resident record](docs/screenshots/member-record.png) |
 
+**The chefs' Feedback tab and a live house poll.** Requests come in ranked by votes, with no names attached, and the chefs schedule, save, pass or answer each one. A live poll stays in front of every resident until he answers.
+
+<p align="center">
+  <img src="docs/screenshots/kitchen-feedback.png" width="70%" alt="The kitchen kiosk's Feedback tab: anonymous meal requests ranked by votes, with the chefs' options to schedule, save for later, pass or reply">
+  <img src="docs/screenshots/phone-poll.png" width="22%" alt="A live poll on a resident's phone: pick up to two additions to Sunday brunch">
+</p>
+
 ![The manager's dashboard](docs/screenshots/dashboard.png)
 
 ![Cover requests in the audit log: asked, picked up, and a same-day ask the manager raised to 2x](docs/screenshots/audit-cover.png)
